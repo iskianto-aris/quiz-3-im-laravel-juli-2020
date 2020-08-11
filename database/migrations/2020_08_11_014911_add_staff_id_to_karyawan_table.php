@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateProyekTable extends Migration
+class AddStaffIdToKaryawanTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,10 @@ class CreateProyekTable extends Migration
      */
     public function up()
     {
-        Schema::create('proyek', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->timestamps();
+        Schema::table('karyawan', function (Blueprint $table) {
+            $table->unsignedBigInteger('staff_id')->nullable();
+            $table->foreign('staff_id')->references('id')->on('staff');
+
         });
     }
 
@@ -26,6 +27,8 @@ class CreateProyekTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('proyek');
+        Schema::table('karyawan', function (Blueprint $table) {
+            //
+        });
     }
 }

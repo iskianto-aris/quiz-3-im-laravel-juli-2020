@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateKaryawanTable extends Migration
+class CreateProyekTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,14 @@ class CreateKaryawanTable extends Migration
      */
     public function up()
     {
-        Schema::create('karyawan', function (Blueprint $table) {
+        Schema::create('proyek', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('nama');
+            $table->longText('deskripsi');
+            $table->dateTime('tanggal_mulai')->nullable();
+            $table->dateTime('tanggal_deadline')->nullable();
+            $table->tinyInteger('status')->default(0);
+
             $table->timestamps();
         });
     }
@@ -26,6 +32,6 @@ class CreateKaryawanTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('karyawan');
+        Schema::dropIfExists('proyek');
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateJabatanTable extends Migration
+class AddProyekIdToManagerTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateJabatanTable extends Migration
      */
     public function up()
     {
-        Schema::create('jabatan', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->timestamps();
+        Schema::table('manager', function (Blueprint $table) {
+            $table->unsignedBigInteger('proyek_id')->nullable();
+            $table->foreign('proyek_id')->references('id')->on('proyek');
         });
     }
 
@@ -26,6 +26,8 @@ class CreateJabatanTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('jabatan');
+        Schema::table('manager', function (Blueprint $table) {
+            //
+        });
     }
 }
