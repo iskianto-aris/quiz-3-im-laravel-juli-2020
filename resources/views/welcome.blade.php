@@ -7,7 +7,7 @@
     <title>Welcome</title>
 </head>
 <body>
-    <img src="images/ERD.png" alt="">
+    <img src="images/erd1.png" alt="">
 </body>
 </html>
 
